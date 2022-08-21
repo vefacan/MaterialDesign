@@ -3,6 +3,9 @@ package com.example.materialdesign
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.SearchView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -11,12 +14,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar.title = "Hoşgeldiniz"
-        toolbar.subtitle="Kayıt Ekranı"
-        toolbar.setLogo(R.drawable.resim_nota)
-        toolbar.setTitleTextColor(resources.getColor(R.color.white))
+        hosgeldinizToolbar.title = "Hoşgeldiniz"
+        hosgeldinizToolbar.subtitle="Kayıt Ekranı"
+        hosgeldinizToolbar.setLogo(R.drawable.resim_nota)
+        hosgeldinizToolbar.setTitleTextColor(resources.getColor(R.color.white))
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(hosgeldinizToolbar)
 
 
         mainFab.setOnClickListener {
@@ -51,9 +54,33 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity,"İsminiz: $ad , Numaranız: $tel",Toast.LENGTH_SHORT).show()
         }
 
+    }
 
-
-
+     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu,menu)
+        return true
 
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+
+            R.id.action_search ->{
+                Toast.makeText(applicationContext,"Arama tuşuna basıldı.",Toast.LENGTH_SHORT).show()
+                }
+            R.id.action_settings ->{
+                Toast.makeText(applicationContext,"Ayarlara tıklanıldı..",Toast.LENGTH_SHORT).show()
+            }
+            R.id.action_add ->{
+                Toast.makeText(applicationContext,"Ekleme tuşuna tıklanıldı.",Toast.LENGTH_SHORT).show()
+            }
+            R.id.action_exit ->{
+                Toast.makeText(applicationContext,"Çıkış yapıldı.",Toast.LENGTH_SHORT).show()
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+                return super.onOptionsItemSelected(item)
+    }
+
 }
