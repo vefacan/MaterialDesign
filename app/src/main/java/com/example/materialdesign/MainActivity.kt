@@ -1,5 +1,6 @@
 package com.example.materialdesign
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -30,7 +31,6 @@ class MainActivity : AppCompatActivity() {
 
 
         buttonMainOnay.setOnClickListener {
-
             val ad = editTextAd.text.toString().trim()
             val tel = editTextTel.text.toString().trim()
 
@@ -38,20 +38,17 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity,"Bir isim giriniz.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
             if(TextUtils.isEmpty(tel)){
                 Toast.makeText(this@MainActivity,"Bir numara giriniz.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
             if (tel.length < 6){
                 Toast.makeText(this@MainActivity,"Telefon numarası en az 6 haneli olmalıdır.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-
-
             Toast.makeText(this@MainActivity,"İsminiz: $ad , Numaranız: $tel",Toast.LENGTH_SHORT).show()
+
+            startActivity(Intent(this@MainActivity,RecyclerViewVeCardView::class.java))
         }
 
     }
@@ -59,7 +56,6 @@ class MainActivity : AppCompatActivity() {
      override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu,menu)
         return true
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
