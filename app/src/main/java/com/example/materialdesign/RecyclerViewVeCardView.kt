@@ -1,5 +1,6 @@
 package com.example.materialdesign
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,11 @@ class RecyclerViewVeCardView : AppCompatActivity() {
         adapter = RVAdapter(this@RecyclerViewVeCardView,ulkelerList)
 
         rv.adapter = adapter
+
+        buttonToTabLayout.setOnClickListener {
+
+            startActivity(Intent(this@RecyclerViewVeCardView,TabLayout::class.java))
+        }
 
     }
 }
